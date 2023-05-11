@@ -1,0 +1,4 @@
+routes:
+  '/':
+    target: https://example.com/
+    changeOrigin: true
