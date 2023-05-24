@@ -24,7 +24,6 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.1.0",
-    "@rollup/plugin-yaml": "^4.0.1",
     "@types/body-parser": "^1.19.2",
     "@types/cookie-parser": "^1.4.3",
     "@types/cors": "^2.8.13",
@@ -52,8 +51,8 @@
     "mongodb": "^5.4.0",
     "mongoose": "^7.1.0",
     "nanoid": "^4.0.2",
-    "passport": "^0.6.0",
     "pino": "^8.14.1",
-    "pino-http": "^8.3.3"
+    "pino-http": "^8.3.3",
+    "yaml": "^2.3.0"
   }
 }

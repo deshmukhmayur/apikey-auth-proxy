@@ -19,7 +19,7 @@ const getKey = async (req: Request, res: Response) => {
 
 const createKey = async (req: Request, res: Response) => {
   /* Generate a new key */
-  const key = generateToken(API_TOKEN_PREFIX);
+  const key = generateToken(API_TOKEN_PREFIX + '_');
   const hashKey = generateHash(key);
   const body = req.body;
 

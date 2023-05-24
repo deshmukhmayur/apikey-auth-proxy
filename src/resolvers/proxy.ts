@@ -5,8 +5,6 @@ export default function getProxyResolver(options: Options) {
   const resolver = (req: Request, res: Response, next: NextFunction) => {
     const proxy = createProxyMiddleware({
       ...options,
-      logLevel: 'debug',
-      secure: false,
       headers: {
         ...options.headers,
         'x-forwarded-user': res.locals.userId,

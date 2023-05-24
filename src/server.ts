@@ -3,11 +3,13 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import apiKeyRouter from './resolvers/apikeys';
-import { ENABLE_API_KEY_AUTH } from './setup/env';
+import { ENABLE_API_KEY_AUTH, ROUTE_CONFIG_PATH } from './setup/env';
 import { pinoMiddleware } from './setup/logger';
 import { auth } from './middlewares/auth';
-import config from '../config/routes.yaml';
 import getProxyResolver from './resolvers/proxy';
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
+import { parse } from 'yaml';
 
 const server = express();
 
@@ -28,6 +30,9 @@ if (ENABLE_API_KEY_AUTH) {
 }
 
 /* Creating proxy handlers for all the routes defined in config.routes */
+const config: YamlConfig = parse(
+  readFileSync(resolve(ROUTE_CONFIG_PATH)).toString()
+);
 Object.entries(config.routes).forEach((route) => {
   const [path, options] = route;
   server.use(path, [auth], getProxyResolver(options));
