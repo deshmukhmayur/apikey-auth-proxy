@@ -29,6 +29,10 @@ export const auth = async (req: Request, res: Response, next: NextFunction) => {
     if (!existingKey) {
       throw new Error('Invalid API Key');
     }
+
+    /* Store the user details from the api key in the response */
+    res.locals.userId = existingKey.createdBy;
+
     next();
   } catch (error: any) {
     res.status(401).json({

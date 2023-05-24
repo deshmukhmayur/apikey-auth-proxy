@@ -27,7 +27,7 @@ const createKey = async (req: Request, res: Response) => {
     const apiKey = await new APIKeys({
       ...body,
       hashKey,
-      createdBy: res.locals.userId ?? 'test',
+      createdBy: res.locals.userId ?? body.createdBy,
     }).save();
 
     return res.status(201).json({
