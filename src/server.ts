@@ -6,7 +6,7 @@ import apiKeyRouter from './resolvers/apikeys';
 import { ENABLE_API_KEY_AUTH } from './setup/env';
 import { pinoMiddleware } from './setup/logger';
 import { auth } from './middlewares/auth';
-import config from '../config.yaml';
+import config from '../config/routes.yaml';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 
 const server = express();

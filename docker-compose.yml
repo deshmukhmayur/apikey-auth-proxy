@@ -1,5 +1,15 @@
 version: '3'
 services:
+  proxy:
+    build: .
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/auth-proxy
+      - ENABLE_API_KEY_AUTH=true
+    volumes:
+      - .:/opt/app-root/src
+    ports:
+      - 8080:8080
+
   mongodb:
     image: mongo:latest
     restart: always

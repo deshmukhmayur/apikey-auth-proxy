@@ -1,6 +1,6 @@
 /// <reference types="http-proxy-middleware" />
 
-declare module '*.yaml' {
+declare module '*/config/routes.yaml' {
   const config: YamlConfig;
   export default config;
 
