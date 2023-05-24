@@ -1,6 +1,7 @@
 import { Request, Response, Router } from 'express';
 import { generateHash, generateToken } from '../utils/api-token';
 import APIKeys from '../models/apikeys';
+import { API_TOKEN_PREFIX } from '../setup/env';
 
 const getKey = async (req: Request, res: Response) => {
   const { keyId } = req.params;
@@ -18,7 +19,7 @@ const getKey = async (req: Request, res: Response) => {
 
 const createKey = async (req: Request, res: Response) => {
   /* Generate a new key */
-  const key = generateToken('opp_');
+  const key = generateToken(API_TOKEN_PREFIX);
   const hashKey = generateHash(key);
   const body = req.body;
 
