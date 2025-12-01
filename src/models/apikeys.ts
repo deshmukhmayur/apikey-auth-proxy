@@ -11,7 +11,9 @@ type APIKey = {
   updatedAt: string;
 };
 
-const APIKeySchema = new Schema<APIKey>(
+export interface APIKeyModel extends APIKey, Document {}
+
+const APIKeySchema = new Schema<APIKeyModel>(
   {
     keyId: { type: String, unique: true, default: () => randomId(6) },
     label: { type: String, unique: true, required: true },
@@ -27,8 +29,6 @@ const APIKeySchema = new Schema<APIKey>(
     timestamps: true,
   }
 );
-
-export interface APIKeyModel extends APIKey, Document {}
 
 export interface APIKeyStatic extends Model<APIKeyModel> {}
 

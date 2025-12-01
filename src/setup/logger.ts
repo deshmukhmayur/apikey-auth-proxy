@@ -6,7 +6,7 @@ const logger = pino();
 export const pinoMiddleware = pinoHttp({
   logger: pino(),
   redact: {
-    paths: ['req.headers.x-api-key', 'req.headers.authorization'],
+    paths: ['req.headers["x-api-key"]', 'req.headers.authorization'],
     censor: '[REDACTED]',
   },
 });
