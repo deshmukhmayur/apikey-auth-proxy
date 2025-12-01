@@ -27,6 +27,12 @@ jobs:
       uses: docker/metadata-action@v5.10.0
       with:
         images: ${{env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        tags: |
+          type=schedule
+          type=ref,event=branch
+          type=ref,event=tags
+          type=raw,value=${{ github.sha }}
+          type=raw,value=latest
 
     - name: Build and push the Docker image
       uses: docker/build-push-action@v6.18.0
@@ -42,3 +48,4 @@ jobs:
         subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         subject-digest: ${{ steps.push.outputs.digest }}
         push-to-registry: true
+        github-token: ${{ secrets.GITHUB_TOKEN }}
